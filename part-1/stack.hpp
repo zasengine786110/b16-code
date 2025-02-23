@@ -48,6 +48,12 @@ template <typename T> class Stack
 
     // Check if the stack is full
     bool full() const { return _head == _storage.size(); }
+    
+    // Overload the << operator to accept a function pointer
+    Stack<T>& operator<<(void (*func)(Stack<T>&)) {
+        func(*this);
+        return *this;
+    }
 };
 
 #endif // __stack__
