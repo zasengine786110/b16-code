@@ -2,7 +2,7 @@
 #include "utils.hpp"
 
 #include <iostream>
-
+using namespace std;
 int main(int argc, char **argv)
 {
     // Create a queue with space for a few elements
@@ -10,27 +10,27 @@ int main(int argc, char **argv)
 
     // Keep pushing and popping elements from the dequeue for a while
     for (int repetition = 0; repetition < 3; ++repetition) {
-        std::cout << "Enqueued front";
+        cout << "Enqueued front";
         for (int i = 0; i < 3; ++i) {
             queue.enqueue_front(i);
-            std::cout << ' ' << i;
+            cout << ' ' << i;
         }
-        std::cout << "\nDequeued front";
+        cout << "\nDequeued front";
         for (int i = 0; i < 3; ++i) {
-            std::cout << ' ' << queue.front();
+            cout << ' ' << queue.front();
             queue.dequeue();
         }
-        std::cout << "\nEnqueued back";
+        cout << "\nEnqueued back";
         for (int i = 0; i < 3; ++i) {
             queue.enqueue(i);
-            std::cout << ' ' << i;
+            cout << ' ' << i;
         }
-        std::cout << "\nDequeued back";
+        cout << "\nDequeued back";
         for (int i = 0; i < 3; ++i) {
-            std::cout << ' ' << queue.back();
+            cout << ' ' << queue.back();
             queue.dequeue_back();
         }
-        std::cout << '\n';
+        cout << '\n';
     }
 
     return 0;

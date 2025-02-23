@@ -4,14 +4,15 @@
 #include <cassert>
 #include <memory>
 #include <vector>
+using namespace std;
 
 template <typename T> struct Node {
     T value;
-    std::unique_ptr<Node<T>> next;
+    unique_ptr<Node<T>> next;
 
     Node() : value{}, next{nullptr} {}
-    Node(const T &value, std::unique_ptr<Node<T>> next)
-        : value{value}, next{std::move(next)}
+    Node(const T &value, unique_ptr<Node<T>> next)
+        : value{value}, next{move(next)}
     {
     }
 };
@@ -20,7 +21,7 @@ template <typename T>
 Node<T> *list_insert_after(Node<T> *node, const T &value)
 {
     node->next =
-        std::make_unique<Node<T>>(value, std::move(node->next));
+        make_unique<Node<T>>(value, move(node->next));
     return node->next.get();
 }
 
@@ -34,9 +35,9 @@ Node<T> *list_find_predecessor(Node<T> *node, F predicate)
 }
 
 template <typename T>
-std::vector<T> list_to_vector(const Node<T> &node)
+vector<T> list_to_vector(const Node<T> &node)
 {
-    std::vector<T> v;
+    vector<T> v;
     for (Node<T> *current = node.next.get(); current;
          current = current->next.get()) {
         v.push_back(current->value);
